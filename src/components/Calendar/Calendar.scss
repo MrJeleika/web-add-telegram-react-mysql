@@ -1,0 +1,56 @@
+.react-calendar {
+  background: var(--tg-theme-bg-color);
+  border: 0;
+  width: 100%;
+  &__tile {
+    color: var(--tg-theme-text-color);
+  }
+  &__month-view {
+    &__weekdays__weekday {
+      color: var(--tg-theme-button-color);
+    }
+    &__days__day {
+      height: 14.2857vw; // to make tiles round
+      border-radius: 50%;
+      margin: 0 2px;
+      &--neighboringMonth {
+        color: var(--tg-theme-hint-color);
+      }
+    }
+  }
+  &__navigation {
+    > button {
+      color: var(--tg-theme-button-color);
+    }
+  }
+
+  &__tile--range {
+    background: var(--tg-theme-button-color);
+  }
+
+  &__tile--now {
+    background: transparent;
+    border: 1px solid var(--tg-theme-button-color) !important;
+    &:enabled:hover {
+      background: transparent;
+      border: 1px solid var(--tg-theme-button-color);
+    }
+    &:enabled:focus {
+      background: transparent;
+      border: 1px solid var(--tg-theme-button-color);
+    }
+    &:enabled:active {
+      background: transparent;
+      border: 1px solid var(--tg-theme-button-color);
+    }
+  }
+  &__tile--active {
+    background: var(--tg-theme-button-color);
+    &:enabled:hover {
+      background: var(--tg-theme-button-color);
+    }
+    &:enabled:focus {
+      background: var(--tg-theme-button-color);
+    }
+  }
+}

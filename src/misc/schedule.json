@@ -1,0 +1,314 @@
+[
+  [
+    [
+      [
+        {
+          "time": "09:50",
+          "lesson": "DS",
+          "lessonType": "LC",
+          "teacher": "TroVM"
+        },
+        {
+          "time": "11:40",
+          "lesson": "OOP",
+          "lessonType": "LC",
+          "teacher": "VasMD"
+        }
+      ],
+      [
+        {
+          "time": "11:40",
+          "lesson": "DS",
+          "lessonType": "PC",
+          "teacher": "AndTV"
+        },
+        {
+          "time": "13:30",
+          "lesson": "LAtAG",
+          "lessonType": "PC",
+          "teacher": "GryOM"
+        }
+      ],
+      [
+        {
+          "time": "08:00",
+          "lesson": "DUM",
+          "lessonType": "LB",
+          "teacher": "DyaTM"
+        },
+        {
+          "time": "09:50",
+          "lesson": "FVtS",
+          "lessonType": "PC",
+          "teacher": "LukIV"
+        }
+      ],
+      [
+        {
+          "time": "08:00",
+          "lesson": "FIM",
+          "lessonType": "PC",
+          "teacher": "BilNP"
+        },
+        {
+          "time": "09:50",
+          "lesson": "OOP",
+          "lessonType": "LB",
+          "teacher": "StuMD"
+        },
+        {
+          "time": "11:40",
+          "lesson": "MatAn",
+          "lessonType": "PC",
+          "teacher": "GryOM"
+        }
+      ],
+      [
+        {
+          "time": "09:50",
+          "lesson": "DUM",
+          "lessonType": "LC",
+          "teacher": "PryOY"
+        },
+        {
+          "time": "11:40",
+          "lesson": "LAtAG",
+          "lessonType": "LC",
+          "teacher": "GryOM"
+        }
+      ],
+      {},
+      {}
+    ],
+    [
+      [
+        {
+          "time": "11:40",
+          "lesson": "FVtS",
+          "lessonType": "PC",
+          "teacher": "LukIV"
+        },
+        {
+          "time": "13:30",
+          "lesson": "LAtAG",
+          "lessonType": "PC",
+          "teacher": "GryOM"
+        }
+      ],
+      [
+        {
+          "time": "09:50",
+          "lesson": "LAtAG",
+          "lessonType": "LC",
+          "teacher": "GryOM"
+        },
+        {
+          "time": "11:40",
+          "lesson": "MatAn",
+          "lessonType": "LC",
+          "teacher": "GryOM"
+        }
+      ],
+      [
+        {
+          "time": "09:50",
+          "lesson": "OOP",
+          "lessonType": "LB",
+          "teacher": "StuMD"
+        },
+        {
+          "time": "11:40",
+          "lesson": "DS",
+          "lessonType": "PC",
+          "teacher": "AndTV"
+        }
+      ],
+      [
+        {
+          "time": "08:00",
+          "lesson": "FIM",
+          "lessonType": "PC",
+          "teacher": "BilNP"
+        },
+        {
+          "time": "09:50",
+          "lesson": "OOP",
+          "lessonType": "LB",
+          "teacher": "StuMD"
+        }
+      ],
+      [
+        {
+          "time": "08:00",
+          "lesson": "DS",
+          "lessonType": "LC",
+          "teacher": "TroVM"
+        },
+        {
+          "time": "09:50",
+          "lesson": "OOP",
+          "lessonType": "LC",
+          "teacher": "VasMD"
+        }
+      ],
+      {},
+      {}
+    ]
+  ],
+  [
+    [
+      [
+        {
+          "time": "09:50",
+          "lesson": "DS",
+          "lessonType": "LC",
+          "teacher": "TroVM"
+        },
+        {
+          "time": "11:40",
+          "lesson": "OOP",
+          "lessonType": "LC",
+          "teacher": "VasMD"
+        }
+      ],
+      [
+        {
+          "time": "11:40",
+          "lesson": "DS",
+          "lessonType": "PC",
+          "teacher": "AndTV"
+        },
+        {
+          "time": "13:30",
+          "lesson": "LAtAG",
+          "lessonType": "PC",
+          "teacher": "GryOM"
+        }
+      ],
+      [
+        {
+          "time": "08:00",
+          "lesson": "DUM",
+          "lessonType": "LB",
+          "teacher": "DyaTM"
+        },
+        {
+          "time": "09:50",
+          "lesson": "FVtS",
+          "lessonType": "PC",
+          "teacher": "LukIV"
+        }
+      ],
+      [
+        {
+          "time": "08:00",
+          "lesson": "OOP",
+          "lessonType": "LB",
+          "teacher": "StuMD"
+        },
+        {
+          "time": "09:50",
+          "lesson": "FIM",
+          "lessonType": "PC",
+          "teacher": "BilNP"
+        },
+        {
+          "time": "11:40",
+          "lesson": "MatAn",
+          "lessonType": "PC",
+          "teacher": "GryOM"
+        }
+      ],
+      [
+        {
+          "time": "09:50",
+          "lesson": "DUM",
+          "lessonType": "LC",
+          "teacher": "PryOY"
+        },
+        {
+          "time": "11:40",
+          "lesson": "LAtAG",
+          "lessonType": "LC",
+          "teacher": "GryOM"
+        }
+      ],
+      {},
+      {}
+    ],
+    [
+      [
+        {
+          "time": "11:40",
+          "lesson": "FVtS",
+          "lessonType": "PC",
+          "teacher": "LukIV"
+        },
+        {
+          "time": "13:30",
+          "lesson": "LAtAG",
+          "lessonType": "PC",
+          "teacher": "GryOM"
+        }
+      ],
+      [
+        {
+          "time": "09:50",
+          "lesson": "LAtAG",
+          "lessonType": "LC",
+          "teacher": "GryOM"
+        },
+        {
+          "time": "11:40",
+          "lesson": "MatAn",
+          "lessonType": "LC",
+          "teacher": "GryOM"
+        }
+      ],
+      [
+        {
+          "time": "11:40",
+          "lesson": "DS",
+          "lessonType": "PC",
+          "teacher": "AndTV"
+        },
+        {
+          "time": "13:30",
+          "lesson": "OOP",
+          "lessonType": "LB",
+          "teacher": "StuMD"
+        }
+      ],
+      [
+        {
+          "time": "08:00",
+          "lesson": "OOP",
+          "lessonType": "LB",
+          "teacher": "StuMD"
+        },
+        {
+          "time": "09:50",
+          "lesson": "FIM",
+          "lessonType": "PC",
+          "teacher": "BilNP"
+        }
+      ],
+      [
+        {
+          "time": "08:00",
+          "lesson": "DS",
+          "lessonType": "LC",
+          "teacher": "TroVM"
+        },
+        {
+          "time": "09:50",
+          "lesson": "OOP",
+          "lessonType": "LC",
+          "teacher": "VasMD"
+        }
+      ],
+      {},
+      {}
+    ]
+  ]
+]

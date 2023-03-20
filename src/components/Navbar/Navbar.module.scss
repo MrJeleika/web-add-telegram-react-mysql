@@ -1,0 +1,20 @@
+.nav {
+  width: 100%;
+  position: relative;
+  &__body {
+    padding: 5px 0;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.svg {
+  width: 30px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.text {
+  color: var(--tg-theme-link-color);
+  cursor: pointer;
+}
