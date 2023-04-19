@@ -12,7 +12,7 @@ export const apiSlice = createApi({
   reducerPath: 'apiSlice',
   baseQuery: fetchBaseQuery({
     baseUrl:
-      'http://localhost:3000', /* https://telegram-web-app-postgre.herokuapp.com/ */
+      'https://telegram-web-app-postgre.herokuapp.com/', /* https://telegram-web-app-postgre.herokuapp.com/ */
   }),
   tagTypes: ['Schedule', 'DaySchedule', 'Teachers', 'LessonNames', 'Links'],
   endpoints: (builder) => ({
