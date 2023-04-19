@@ -3,10 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import 'react-calendar/dist/Calendar.css'
 import './Calendar.scss'
 import { motion } from 'framer-motion'
-import { setDate, setDaySchedule } from '../../redux/slice/appSlice'
-import { formatDate, getWeekNum } from 'utils'
-import { useFetchDayScheduleQuery } from 'redux/api/appAPI'
-import { useSetFetchedData } from 'hooks/useSetFetchedData'
+import { setDate, setWeek } from '../../redux/slice/appSlice'
+import { formatDate } from 'utils'
 import { useAppDispatch } from 'redux/app/hooks'
 
 interface IProps {
@@ -19,7 +17,6 @@ export const CalendarComponent = ({ isOpen, setIsOpen, navbarRef }: IProps) => {
   const [date, setData] = useState<Date>(
     new Date(new Date().setHours(0, 0, 0, 0))
   )
-  const [week, setWeek] = useState<number>(1)
 
   const calendarRef = useRef<HTMLDivElement>(null)
 
@@ -30,27 +27,20 @@ export const CalendarComponent = ({ isOpen, setIsOpen, navbarRef }: IProps) => {
     closed: { opacity: 0, transitionEnd: { display: 'none' } },
   }
 
-  const { data, isFetching } = useFetchDayScheduleQuery({
-    week,
-    day: date.getWeekDay(),
-  })
-
-  useSetFetchedData(data, setDaySchedule, isFetching)
-
-  // Set default values if no lessons on this day
-  useEffect(() => {
-    if (!data) {
-      dispatch(
-        setDaySchedule({
-          _id: '',
-          day: date.getWeekDay(),
-          week,
-          schedule: [],
-          exceptions: [],
-        })
-      )
-    }
-  }, [data])
+  // // Set default values if no lessons on this day
+  // useEffect(() => {
+  //   if (!data) {
+  //     dispatch(
+  //       setDaySchedule({
+  //         _id: '',
+  //         day: date.getWeekDay(),
+  //         week,
+  //         schedule: [],
+  //         exceptions: [],
+  //       })
+  //     )
+  //   }
+  // }, [data])
 
   // close calendar on outside click
   useEffect(() => {
@@ -69,9 +59,9 @@ export const CalendarComponent = ({ isOpen, setIsOpen, navbarRef }: IProps) => {
   }, [])
 
   useEffect(() => {
-    dispatch(setDate(new Date(formatDate(date))))
     setIsOpen(false)
-    setWeek(getWeekNum(date))
+    dispatch(setDate(new Date(formatDate(date))))
+    dispatch(setWeek(date.getWeek()))
   }, [date])
 
   return (

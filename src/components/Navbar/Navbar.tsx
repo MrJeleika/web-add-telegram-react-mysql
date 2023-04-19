@@ -5,26 +5,32 @@ import { CalendarSVG } from '../svg/CalendarSVG'
 import { Box, IconButton, Skeleton, Typography } from '@mui/material'
 import { useAppSelector } from 'redux/app/hooks'
 import { daysOfWeek } from 'utils'
-import { Link } from 'react-router-dom'
-import { ArrowBackIosNew, Edit } from '@mui/icons-material'
+import { Link, useLocation } from 'react-router-dom'
+import { ArrowBackIosNew, Menu } from '@mui/icons-material'
+import { Burger } from './Burger/Burger'
 
 export const Navbar = () => {
-  const { date, isFetching, daySchedule } = useAppSelector((state) => state.app)
+  const { date, isFetching, week } = useAppSelector((state) => state.app)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const navbarRef = useRef<HTMLDivElement>(null)
+  const location = useLocation()
 
   return (
-    <div className={s.nav}>
-      <div className={s.nav__body} ref={navbarRef}>
-        <Link to="/">
-          <IconButton>
-            <ArrowBackIosNew color="primary" />
-          </IconButton>
-        </Link>
+    <Box className={s.nav}>
+      <Box className={s.nav__body} ref={navbarRef}>
+        {location.pathname === '/' ? (
+          <Box sx={{ width: '40px' }}></Box>
+        ) : (
+          <Link to="/">
+            <IconButton>
+              <ArrowBackIosNew color="primary" />
+            </IconButton>
+          </Link>
+        )}
         <Box sx={{ display: 'flex' }} onClick={() => setIsOpen(!isOpen)}>
-          <div className={s.svg}>
+          <Box className={s.svg}>
             <CalendarSVG />
-          </div>
+          </Box>
           <Typography
             variant="h6"
             sx={{ cursor: 'pointer' }}
@@ -33,12 +39,8 @@ export const Navbar = () => {
             Вибрати день
           </Typography>
         </Box>
-        <Link to="/change">
-          <IconButton>
-            <Edit color="primary" />
-          </IconButton>
-        </Link>
-      </div>
+        <Burger />
+      </Box>
 
       <Typography
         onClick={() => setIsOpen(true)}
@@ -63,7 +65,7 @@ export const Navbar = () => {
           color={'secondary'}
           sx={{ mb: 2 }}
         >
-          {daysOfWeek[date.getWeekDay() - 1]}, {daySchedule.week} тиждень
+          {daysOfWeek[date.getWeekDay() - 1]}, {week} тиждень
         </Typography>
       )}
       <CalendarComponent
@@ -71,6 +73,6 @@ export const Navbar = () => {
         setIsOpen={setIsOpen}
         navbarRef={navbarRef}
       />
-    </div>
+    </Box>
   )
 }

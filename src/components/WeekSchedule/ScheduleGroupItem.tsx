@@ -1,15 +1,16 @@
 import { Delete, Edit } from '@mui/icons-material'
 import { Box, Button, IconButton } from '@mui/material'
 import { useDeleteWeekLessonMutation } from 'redux/api/appAPI'
-import { ILesson, ISchedule } from 'types'
+import { ILesson } from 'types'
 import { useState } from 'react'
 import { ChangeWeekLessonModal } from './ChangeWeekLessonModal'
 import { Lesson } from 'components/Lessons/Lesson/Lesson'
+import { useAppSelector } from 'redux/app/hooks'
 
 interface Props {
   group: number
   day: string
-  schedule: ISchedule
+  schedule: ILesson[]
   handleOpenAddModal: (number: number) => void
   setGroup: (number: number) => void
 }
@@ -22,7 +23,9 @@ export const ScheduleGroupItem = ({
   handleOpenAddModal,
 }: Props) => {
   const [isOpenChangeLesson, setIsOpenChangeLesson] = useState<boolean>(false)
-  const [deleteWeekLesson, { error }] = useDeleteWeekLessonMutation()
+  const [deleteWeekLesson] = useDeleteWeekLessonMutation()
+
+  // Default values to avoid errors
   const [lesson, setLesson] = useState<any>({
     time: '08:00',
     type: 'Лекція',
@@ -33,12 +36,12 @@ export const ScheduleGroupItem = ({
     setLesson(lesson)
     setIsOpenChangeLesson(true)
   }
-
+  const { week } = useAppSelector((state) => state.app)
   return (
     <>
-      {schedule.schedule &&
-        schedule.schedule
-          .filter((e) => e.group === group)
+      {schedule &&
+        schedule
+          .filter((e) => e.group === group && e.time)
           .sort((a, b) => (a.time > b.time ? 1 : -1))
           .map((lesson, i) => (
             <Box key={i} sx={{ mb: 1.5 }}>
@@ -51,11 +54,7 @@ export const ScheduleGroupItem = ({
                   <Edit color="secondary" />
                 </IconButton>
                 <IconButton
-                  onClick={() =>
-                    deleteWeekLesson({
-                      _id: lesson._id,
-                    })
-                  }
+                  onClick={() => deleteWeekLesson(lesson.id)}
                   sx={{ alignSelf: 'right' }}
                 >
                   <Delete color="secondary" />
@@ -77,7 +76,7 @@ export const ScheduleGroupItem = ({
         day={day}
         schedule={schedule}
         lesson={lesson}
-        week={schedule.week}
+        week={week}
       />
     </>
   )

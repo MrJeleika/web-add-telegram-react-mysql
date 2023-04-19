@@ -1,5 +1,7 @@
+import { useMemo } from 'react'
 import { useAppSelector } from './../redux/app/hooks'
-import { ISchedule } from './../types/index'
+import {ILesson } from './../types/index'
+import { IFetchDaySchedule } from 'types/api/dayLessons'
 // import { useAppSelector } from '../redux/app/hooks'
 // import { useDispatch, useSelector } from 'react-redux'
 // import schedule from '../misc/schedule.json'
@@ -39,20 +41,17 @@ Date.prototype.getWeekDay = function () {
   return (this.getDay() === 0 ? 6 : this.getDay() - 1) + 1
 }
 
-export const getWeekNum = (date: any) => {
-  Date.prototype.getWeek = function (): number {
-    const onejan: any = new Date(this.getFullYear(), 0, 1)
-    const today: any = new Date(
-      this.getFullYear(),
-      this.getMonth(),
-      this.getDate()
-    )
-    const dayOfYear = (today - onejan + 86400000) / 86400000
-    return Math.ceil(dayOfYear / 7)
-  }
-
+Date.prototype.getWeek = function (): number {
+  const onejan: any = new Date(this.getFullYear(), 0, 1)
+  const today: any = new Date(
+    this.getFullYear(),
+    this.getMonth(),
+    this.getDate()
+  )
+  const dayOfYear = (today - onejan + 86400000) / 86400000
+  // Week from start of the year
   const lessonsStartWeek = 5
-  if ((date.getWeek() - lessonsStartWeek) % 2 === 0) {
+  if ((Math.ceil(dayOfYear / 7) - lessonsStartWeek) % 2 === 0) {
     return 1
   }
   return 2
@@ -75,32 +74,26 @@ export const formatDate = (date: Date | string): string => {
   return String(date)
 }
 
-export const getDayLessons = (daySchedule: ISchedule, date: Date) => {
-  const schedule = daySchedule.schedule
-  const exceptions = daySchedule.exceptions
-  // List of day lessons including exceptions
-  const scheduleLessons = schedule.map((lesson) => {
-    let exception = exceptions.find(
-      (ex) => ex.time === lesson.time && ex._id === lesson._id
-    )
-    let sameIdLesson = exceptions.find(
-      // check if 2 lessons have same id but different time(happens when time of lesson is changed), don't show schedule lesson
-      (ex) => ex._id === lesson._id && exception !== ex && ex.time
-    )
-    if (sameIdLesson) return sameIdLesson
-    return exception ? exception : lesson
-  })
 
-  return [
-    ...scheduleLessons,
-    ...daySchedule.exceptions.filter(
-      (e) =>
-        formatDate(e.date) === formatDate(date) &&
-        e.time &&
-        !scheduleLessons.includes(e)
-    ),
-  ]
-}
+// export const getDayLessons = (daySchedule: ILesson[], date: Date) => {
+  
+  
+  
+//   // List of day lessons including exceptions
+//   const scheduleLessons = lessons.map((lesson) => {
+//     let exception = exceptions.find(
+//       (ex) => ex.time === lesson.time && ex.day === lesson.day && ex.week === lesson.week
+//     )
+//     return exception ? exception : lesson
+//   })
+//   exceptions.forEach(ex => console.log(ex)
+//   )
+//   console.log(formatDate(date));
+  
+//   return [
+
+//   ]
+// }
 
 // const teachers = {
 //   GolDO: ['Гололобов Д.О.', 'Gololobov D.O.'],

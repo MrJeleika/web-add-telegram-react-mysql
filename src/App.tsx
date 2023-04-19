@@ -1,21 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './App.scss'
 import { useTelegram } from './hooks/useTelegram'
-import {
-  useAddDayLessonMutation,
-  useAddWeekLessonMutation,
-  useChangeDayLessonMutation,
-  useDeleteDayLessonMutation,
-  useFetchLessonsQuery,
-} from './redux/api/appAPI'
 import { Navbar } from 'components/Navbar/Navbar'
-import { Lessons } from 'components/Lessons/Lessons'
+import { AppRoutes } from './routes/AppRoutes'
+import {
+  useLazyFetchDayLessonsQuery,
+  useFetchLessonNamesQuery,
+  useFetchTeachersQuery,
+  useFetchLinksQuery,
+} from 'redux/api/appAPI'
+import { useSetFetchedData } from 'hooks/useSetFetchedData'
+import {
+  setDaySchedule,
+  setLessonNames,
+  setLinks,
+  setTeachers,
+} from 'redux/slice/appSlice'
 import { useAppSelector } from 'redux/app/hooks'
-import { AddWeekSchedule } from 'components/WeekSchedules/AddWeekSchedule/AddWeekSchedule'
-import { Box, Button } from '@mui/material'
-import { WeekSchedules } from 'components/WeekSchedules/WeekSchedules'
-import { ChangeDaySchedule } from 'components/ChangeDaySchedule/ChangeDaySchedule'
-import { Link, Route, Routes } from 'react-router-dom'
+import { formatDate } from 'utils'
 
 function App() {
   const tg = useTelegram()
@@ -23,25 +25,37 @@ function App() {
     tg.ready()
   }, [])
 
-  const { data } = useFetchLessonsQuery(0)
-
   const onClose = () => {
     tg.close()
   }
 
-  const { date } = useAppSelector((state) => state.app)
+  const { week, date } = useAppSelector((state) => state.app)
+
+  const [getLessons, { data: dayLessons, isFetching: lessonsIsFetching }] =
+    useLazyFetchDayLessonsQuery()
+  useSetFetchedData(dayLessons, setDaySchedule, lessonsIsFetching)
+
+  useEffect(() => {
+    getLessons({
+      date: formatDate(date),
+    })
+  }, [date])
+
+  const { data: teachers, isFetching: teachersIsFetching } =
+    useFetchTeachersQuery()
+  useSetFetchedData(teachers, setTeachers, teachersIsFetching)
+
+  const { data: lessonNames, isFetching: lessonNamesIsFetching } =
+    useFetchLessonNamesQuery()
+  useSetFetchedData(lessonNames, setLessonNames, lessonNamesIsFetching)
+
+  const { data: links, isFetching: linksIsFetching } = useFetchLinksQuery()
+  useSetFetchedData(links, setLinks, linksIsFetching)
 
   return (
     <div className="App">
       <Navbar />
-
-      <Routes>
-        <Route path="/" element={<Lessons />} />
-        <Route
-          path="/change"
-          element={[<ChangeDaySchedule />, <WeekSchedules />]}
-        />
-      </Routes>
+      <AppRoutes />
     </div>
   )
 }

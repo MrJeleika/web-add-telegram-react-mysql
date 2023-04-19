@@ -1,24 +1,19 @@
-import { ISchedule } from 'types'
 import {
-  Box,
   Typography,
-  Accordion,
   AccordionSummary,
   AccordionDetails,
   Divider,
 } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { useState } from 'react'
-import { AddWeekLessonModal } from './AddWeekLessonModal'
-import { ScheduleGroupItem } from './ScheduleGroupItem'
 import { daysOfWeek } from 'utils'
+import { useAppSelector } from 'redux/app/hooks'
+import { AddDayLessonModal } from './AddDayLessonModal'
+import { ScheduleGroupItem } from './ScheduleGroupIItem'
 
-interface Props {
-  schedule: ISchedule
-}
-
-export const WeekSchedule = ({ schedule }: Props) => {
+export const DaySchedule = () => {
   const [isOpenAddLesson, setIsOpenAddLesson] = useState<boolean>(false)
+
+  const { week, daySchedule, date } = useAppSelector((state) => state.app)
 
   const [group, setGroup] = useState<number>(1)
 
@@ -27,14 +22,9 @@ export const WeekSchedule = ({ schedule }: Props) => {
     setGroup(group)
   }
 
-  const day = daysOfWeek[schedule.day - 1]
+  const day = daysOfWeek[date.getWeekDay() - 1]
   return (
     <>
-      <AccordionSummary sx={{ cursor: 'default' }}>
-        <Typography variant="h6" component="h6">
-          {day}, {schedule.week} тиждень
-        </Typography>
-      </AccordionSummary>
       <AccordionDetails>
         <Typography variant="h6">Група 1</Typography>
         <ScheduleGroupItem
@@ -42,7 +32,7 @@ export const WeekSchedule = ({ schedule }: Props) => {
           day={day}
           setGroup={setGroup}
           handleOpenAddModal={handleOpenAddModal}
-          schedule={schedule}
+          schedule={daySchedule}
         />
         <Divider variant="fullWidth" />
         <Typography variant="h6">Група 2</Typography>
@@ -51,16 +41,17 @@ export const WeekSchedule = ({ schedule }: Props) => {
           day={day}
           setGroup={setGroup}
           handleOpenAddModal={handleOpenAddModal}
-          schedule={schedule}
+          schedule={daySchedule}
         />
       </AccordionDetails>
-      <AddWeekLessonModal
-        schedule={schedule}
+
+      <AddDayLessonModal
+        schedule={daySchedule}
         isOpen={isOpenAddLesson}
         setIsOpen={setIsOpenAddLesson}
         day={day}
         group={group}
-        week={schedule.week}
+        week={week}
       />
     </>
   )

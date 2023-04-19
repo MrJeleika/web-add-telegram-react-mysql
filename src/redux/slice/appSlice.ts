@@ -1,20 +1,15 @@
+
 import { formatDate } from './../../utils/index'
-import { ISchedule } from './../../types/index'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IInitialState, ILesson } from 'types'
+import { IFetchedSchedule, IInitialState, ILessonName, ILink, ITeacher } from 'types'
 
 const initialState: IInitialState = {
-  lessons: [],
   isFetching: false,
+  teachers: [],
+  links:[],
+  lessonNames: [],
+  daySchedule: [],
   weekSchedule: [],
-  daySchedule: {
-    _id: '',
-    day: 0,
-    week: 0,
-    schedule: [],
-    exceptions: [],
-  },
-  schedules: [],
   date: new Date(new Date().setHours(0, 0, 0, 0)),
   week: 1,
 }
@@ -23,17 +18,15 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setLessons: (state, action: PayloadAction<ILesson[]>) => {
-      state.lessons = action.payload
-    },
     setFetching: (state, action: PayloadAction<boolean>) => {
       state.isFetching = action.payload
     },
-    setWeekSchedule: (state, action: PayloadAction<ISchedule[]>) => {
-      state.weekSchedule = action.payload
-    },
-    setDaySchedule: (state, action: PayloadAction<ISchedule>) => {
-      state.daySchedule = action.payload
+    setDaySchedule: (state, action: PayloadAction<IFetchedSchedule>) => {
+      const {lessons = [], dayLessons = []} = action.payload
+   
+      
+      state.daySchedule = dayLessons
+      state.weekSchedule = lessons
     },
     setDate: (state, action: PayloadAction<Date>) => {
       state.date = action.payload
@@ -41,19 +34,25 @@ const appSlice = createSlice({
     setWeek: (state, action: PayloadAction<number>) => {
       state.week = action.payload
     },
-    setSchedules: (state, action: PayloadAction<ISchedule[]>) => {
-      state.schedules = action.payload
+    setTeachers: (state, action: PayloadAction<ITeacher[]>) => {
+      state.teachers = action.payload
+    },
+    setLessonNames: (state, action: PayloadAction<ILessonName[]>) => {
+      state.lessonNames = action.payload
+    },
+    setLinks: (state, action: PayloadAction<ILink[]>) => {
+      state.links = action.payload
     },
   },
 })
 
 export const {
-  setLessons,
   setFetching,
-  setWeekSchedule,
   setDaySchedule,
-  setSchedules,
   setDate,
   setWeek,
+  setTeachers,
+  setLessonNames,
+  setLinks,
 } = appSlice.actions
 export default appSlice.reducer

@@ -1,40 +1,44 @@
 export interface ILesson {
-  id: number
+  id: string
   day: number
   week: number
-  lesson: string
+  lessonName: string
   teacher: string
   type: string
+  link: string
   group: number
   time: string
-  date: string | undefined
+  date?: string
+  ref?: string
 }
 
-export interface IExcludedLesson {
-  _id: string
-  time: string
-  lesson: string
-  teacher: string
-  group: number
-  type: string
-  date: string
-  __v: number
+export interface ILink{
+  id: string
+  name: string
+  link: string
 }
 
-export interface ISchedule {
-  _id: string
-  week: number
-  day: number
-  schedule: ILesson[]
-  exceptions: IExcludedLesson[]
+export interface ITeacher{
+  id: string
+  name: string
+}
+export interface ILessonName{
+  id: string
+  name: string
+}
+
+export interface IFetchedSchedule{
+  lessons: ILesson[]
+  dayLessons: ILesson[]
 }
 
 export interface IInitialState {
-  lessons: ILesson[]
   isFetching: boolean
-  weekSchedule: ISchedule[]
-  daySchedule: ISchedule
+  daySchedule: ILesson[]
   date: Date
-  schedules: ISchedule[]
   week: number
+  teachers: ITeacher[]
+  lessonNames: ILessonName[]
+  weekSchedule: ILesson[]
+  links: ILink[]
 }

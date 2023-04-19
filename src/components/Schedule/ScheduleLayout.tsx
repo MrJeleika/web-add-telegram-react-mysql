@@ -1,20 +1,17 @@
+import { Box, Grid, Skeleton, Typography } from '@mui/material'
+import { DaySchedule } from 'components/DaySchedule/DaySchedule'
+import { WeekSchedule } from 'components/WeekSchedule/WeekSchedule'
+import { ReactNode } from 'react'
 import { useAppSelector } from 'redux/app/hooks'
-import { AddWeekSchedule } from './AddWeekSchedule/AddWeekSchedule'
-import { Box, Skeleton, Grid, Typography } from '@mui/material'
-import { useSetFetchedData } from 'hooks/useSetFetchedData'
-import { setSchedules } from 'redux/slice/appSlice'
-import { useFetchSchedulesQuery } from 'redux/api/appAPI'
-import { WeekSchedule } from './WeekSchedule/WeekSchedule'
 
-interface Props {}
+type ScheduleType = 'day' | 'week'
 
-export const WeekSchedules = ({}: Props) => {
-  const { isFetching, daySchedule } = useAppSelector((state) => state.app)
+interface Props {
+  type: ScheduleType
+}
 
-  console.log(daySchedule)
-
-  const { data, isFetching: fetching } = useFetchSchedulesQuery()
-  useSetFetchedData(data, setSchedules, fetching)
+export const ScheduleLayout = ({ type }: Props) => {
+  const { isFetching } = useAppSelector((state) => state.app)
 
   return (
     <Box>
@@ -23,11 +20,11 @@ export const WeekSchedules = ({}: Props) => {
         variant="h5"
         sx={{ py: 2, fontWeight: 'bold', textAlign: 'center' }}
       >
-        Змінити постійний розклад
+        {type === 'day'
+          ? 'Змінити розклад на 1 день'
+          : 'Змінити постійний розклад'}
       </Typography>
-      {!daySchedule._id ? (
-        <AddWeekSchedule />
-      ) : isFetching ? (
+      {isFetching ? (
         <Grid container spacing={1}>
           <Grid
             sm={12}
@@ -57,7 +54,7 @@ export const WeekSchedules = ({}: Props) => {
         </Grid>
       ) : (
         <Box sx={{ flexGrow: 1, pt: 3 }}>
-          <WeekSchedule schedule={daySchedule} />
+          {type === 'day' ? <DaySchedule /> : <WeekSchedule />}
         </Box>
       )}
     </Box>

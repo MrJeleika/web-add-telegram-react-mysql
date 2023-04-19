@@ -1,3 +1,4 @@
+import { useAppSelector } from 'redux/app/hooks'
 import * as yup from 'yup'
 
 export const changeLessonSchema = yup
@@ -8,3 +9,7 @@ export const changeLessonSchema = yup
     type: yup.string().required(),
   })
   .required()
+
+
+const {daySchedule} = useAppSelector(state => state.app)
+
