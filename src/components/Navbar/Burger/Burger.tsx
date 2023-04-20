@@ -36,7 +36,7 @@ export const Burger = () => {
     }
 
   const list: IList[] = [
-    { text: 'Змінити постійний розкладу', link: '/week-lessons' },
+    { text: 'Змінити постійний розклад', link: '/week-lessons' },
     { text: 'Змінити розклад на день', link: '/day-lessons' },
     { text: 'Уроки', link: '/lesson-names' },
     { text: 'Вчителі', link: '/teachers' },
