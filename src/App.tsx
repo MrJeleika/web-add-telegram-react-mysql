@@ -29,7 +29,7 @@ function App() {
     tg.close()
   }
 
-  const { week, date } = useAppSelector((state) => state.app)
+  const { date } = useAppSelector((state) => state.app)
 
   const [getLessons, { data: dayLessons, isFetching: lessonsIsFetching }] =
     useLazyFetchDayLessonsQuery()

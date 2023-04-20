@@ -11,13 +11,14 @@ import { ICreateWeekLesson, IUpdateWeekLesson } from 'types/api/weekLessons'
 export const apiSlice = createApi({
   reducerPath: 'apiSlice',
   baseQuery: fetchBaseQuery({
+    mode: 'no-cors',
     baseUrl:
-      'https://telegram-web-app-postgre.herokuapp.com/', /* https://telegram-web-app-postgre.herokuapp.com/ */
+      'web-app-nest-mysql-production.up.railway.app' || 'https://telegram-web-app-postgre.herokuapp.com/'/* https://telegram-web-app-postgre.herokuapp.com/ */
   }),
   tagTypes: ['Schedule', 'DaySchedule', 'Teachers', 'LessonNames', 'Links'],
   endpoints: (builder) => ({
     fetchDayLessons: builder.query<any, IFetchDaySchedule>({
-      query: (query: IFetchDaySchedule) => `/day-lessons/${query.date}`,
+      query: ({date}: IFetchDaySchedule) => `/day-lessons/${date}`,
       providesTags: ['Schedule'],
     }),
     fetchLinks: builder.query<any, void>({
