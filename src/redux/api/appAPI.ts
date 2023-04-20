@@ -11,7 +11,6 @@ import { ICreateWeekLesson, IUpdateWeekLesson } from 'types/api/weekLessons'
 export const apiSlice = createApi({
   reducerPath: 'apiSlice',
   baseQuery: fetchBaseQuery({
-    mode: 'no-cors',
     baseUrl:
     'https://telegram-web-app-postgre.herokuapp.com/'
       // 'https://web-app-nest-mysql-production.up.railway.app/' ||/* https://telegram-web-app-postgre.herokuapp.com/ */
