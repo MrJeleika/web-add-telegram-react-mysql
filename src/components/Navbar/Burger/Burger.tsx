@@ -58,15 +58,15 @@ export const Burger = () => {
         <Box sx={{ width: 'auto' }}>
           <List>
             {list.map((listItem, i) => (
-              <ListItem key={i}>
-                <Link to={`${listItem.link}`}>
+              <Link key={i} to={`${listItem.link}`}>
+                <ListItem>
                   <ListItemButton>
                     <MuiLink underline="none">
                       <Typography variant="h6">{listItem.text}</Typography>
                     </MuiLink>
                   </ListItemButton>
-                </Link>
-              </ListItem>
+                </ListItem>
+              </Link>
             ))}
           </List>
         </Box>
