@@ -49,7 +49,7 @@ export const ChangeDayLessonModal = ({
   lesson,
   schedule,
 }: IProps) => {
-  const { lessonNames, teachers, date, links } = useAppSelector(
+  const { lessonNames, teachers, date, links, isFetching } = useAppSelector(
     (state) => state.app
   )
 
@@ -317,7 +317,12 @@ export const ChangeDayLessonModal = ({
               </FormControl>
             )}
           />
-          <Button variant="contained" type="submit" sx={{ mt: 1 }}>
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{ mt: 1 }}
+            disabled={isFetching}
+          >
             Змінити
           </Button>
         </form>

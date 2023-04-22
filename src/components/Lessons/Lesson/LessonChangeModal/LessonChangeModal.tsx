@@ -3,15 +3,12 @@ import {
   DialogTitle,
   DialogContent,
   IconButton,
-  Typography,
   TextField,
   Button,
   FormControl,
   InputLabel,
   Select,
-  AlertTitle,
   MenuItem,
-  Alert,
 } from '@mui/material'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Close } from '@mui/icons-material'
@@ -31,6 +28,7 @@ export const LessonChangeModal = ({ isOpen, setIsOpen }: IProps) => {
     reset()
     setIsOpen(false)
   }
+  const { isFetching } = useAppSelector((state) => state.app)
 
   const onSubmit = (data: any) => {
     console.log(data)
@@ -173,7 +171,12 @@ export const LessonChangeModal = ({ isOpen, setIsOpen }: IProps) => {
               </FormControl>
             )}
           />
-          <Button variant="contained" type="submit" sx={{ mt: 1 }}>
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{ mt: 1 }}
+            disabled={isFetching}
+          >
             Change
           </Button>
         </form>

@@ -48,12 +48,14 @@ export const ScheduleGroupItem = ({
               <Lesson item={lesson} />
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <IconButton
+                  disabled={isFetching}
                   onClick={() => handleOpenChangeModal(lesson)}
                   sx={{ alignSelf: 'right' }}
                 >
                   <Edit color="secondary" />
                 </IconButton>
                 <IconButton
+                  disabled={isFetching}
                   onClick={() => deleteWeekLesson(lesson.id)}
                   sx={{ alignSelf: 'right' }}
                 >

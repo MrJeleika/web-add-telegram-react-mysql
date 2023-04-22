@@ -44,7 +44,9 @@ export const ChangeWeekLessonModal = ({
   lesson,
   schedule,
 }: IProps) => {
-  const { lessonNames, teachers, links } = useAppSelector((state) => state.app)
+  const { lessonNames, teachers, links, isFetching } = useAppSelector(
+    (state) => state.app
+  )
 
   const handleClose = () => {
     reset()
@@ -62,6 +64,7 @@ export const ChangeWeekLessonModal = ({
       group,
       type: data.type,
       time: data.time,
+      // Undefined if no link provided
       link_id: data.link ? data.link : undefined,
     })
     reset()
@@ -294,7 +297,12 @@ export const ChangeWeekLessonModal = ({
               </FormControl>
             )}
           />
-          <Button variant="contained" type="submit" sx={{ mt: 1 }}>
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{ mt: 1 }}
+            disabled={isFetching}
+          >
             Змінити
           </Button>
         </form>

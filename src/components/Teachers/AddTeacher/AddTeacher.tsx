@@ -8,6 +8,7 @@ interface SubmitData {
 
 export const AddTeacher = () => {
   const [addTeacher] = useAddTeacherMutation()
+  const { isFetching } = useAppSelector((state) => state.app)
 
   const onSubmit = (data: SubmitData) => {
     addTeacher(data)
@@ -45,7 +46,7 @@ export const AddTeacher = () => {
           )}
         />
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" disabled={isFetching}>
             Додати
           </Button>
         </Box>
