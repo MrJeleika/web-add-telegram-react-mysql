@@ -12,7 +12,6 @@ export const apiSlice = createApi({
   reducerPath: 'apiSlice',
   baseQuery: fetchBaseQuery({
     baseUrl:
-    
     'https://telegram-web-app-postgre.herokuapp.com/'
       // 'https://web-app-nest-mysql-production.up.railway.app/' ||/* https://telegram-web-app-postgre.herokuapp.com/ */
   }),
