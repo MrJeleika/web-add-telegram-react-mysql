@@ -1,6 +1,7 @@
 import { Delete } from '@mui/icons-material'
 import { Box, IconButton, Typography, Link as LinkMui } from '@mui/material'
 import { useDeleteLinkMutation } from 'redux/api/appAPI'
+import { useAppSelector } from 'redux/app/hooks'
 import { ILink } from 'types'
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 
 export const Link = ({ link }: Props) => {
   const [deleteLink] = useDeleteLinkMutation()
+  const { isFetching } = useAppSelector((state) => state.app)
 
   return (
     <Box
@@ -29,7 +31,7 @@ export const Link = ({ link }: Props) => {
           Посилання
         </LinkMui>
       </Box>
-      <IconButton onClick={() => deleteLink(link.id)}>
+      <IconButton onClick={() => deleteLink(link.id)} disabled={isFetching}>
         <Delete color="secondary" />
       </IconButton>
     </Box>

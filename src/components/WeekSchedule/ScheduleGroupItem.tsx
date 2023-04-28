@@ -36,7 +36,7 @@ export const ScheduleGroupItem = ({
     setLesson(lesson)
     setIsOpenChangeLesson(true)
   }
-  const { week } = useAppSelector((state) => state.app)
+  const { week, isFetching } = useAppSelector((state) => state.app)
   return (
     <>
       {schedule &&

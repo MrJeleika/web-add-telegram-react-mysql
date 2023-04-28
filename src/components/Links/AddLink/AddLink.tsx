@@ -1,6 +1,7 @@
 import { Alert, Box, Button, TextField } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
 import { useAddLinkMutation } from 'redux/api/appAPI'
+import { useAppSelector } from 'redux/app/hooks'
 
 interface SubmitData {
   name: string
@@ -9,6 +10,7 @@ interface SubmitData {
 
 export const AddLink = () => {
   const [addLink] = useAddLinkMutation()
+  const { isFetching } = useAppSelector((state) => state.app)
 
   const onSubmit = (data: SubmitData) => {
     addLink(data)
@@ -71,7 +73,7 @@ export const AddLink = () => {
         />
         {errors.link && <Alert severity="error">{errors.link?.message}</Alert>}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" disabled={isFetching}>
             Додати
           </Button>
         </Box>

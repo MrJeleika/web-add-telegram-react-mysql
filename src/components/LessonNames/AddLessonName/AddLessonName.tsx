@@ -1,6 +1,7 @@
 import { Alert, Box, Button, TextField } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
 import { useAddLessonNameMutation } from 'redux/api/appAPI'
+import { useAppSelector } from 'redux/app/hooks'
 
 interface SubmitData {
   name: string
@@ -8,7 +9,7 @@ interface SubmitData {
 
 export const AddLessonName = () => {
   const [addLessonName] = useAddLessonNameMutation()
-
+  const { isFetching } = useAppSelector((state) => state.app)
   const onSubmit = (data: SubmitData) => {
     addLessonName(data)
     reset()
@@ -45,7 +46,7 @@ export const AddLessonName = () => {
           )}
         />
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" disabled={isFetching}>
             Додати
           </Button>
         </Box>

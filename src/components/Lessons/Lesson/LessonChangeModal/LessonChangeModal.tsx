@@ -17,6 +17,7 @@ import { Box } from '@mui/system'
 import { Controller, useForm } from 'react-hook-form'
 import { changeLessonSchema } from 'utils/validation'
 import { ModalError } from 'components/common/Modal/ModalError/ModalError'
+import { useAppSelector } from 'redux/app/hooks'
 
 interface IProps {
   isOpen: boolean
