@@ -27,7 +27,6 @@ DATABASE_URL="Url of your mysql database"
 TOKEN="Token of your telegram bot"
 ```
 
-
 ### Frontend:
 ```
 $ https://github.com/MrJeleika/web-app-telegram-react-mysql.git
