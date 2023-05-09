@@ -27,22 +27,6 @@ export const CalendarComponent = ({ isOpen, setIsOpen, navbarRef }: IProps) => {
     closed: { opacity: 0, transitionEnd: { display: 'none' } },
   }
 
-  // // Set default values if no lessons on this day
-  // useEffect(() => {
-  //   if (!data) {
-  //     dispatch(
-  //       setDaySchedule({
-  //         _id: '',
-  //         day: date.getWeekDay(),
-  //         week,
-  //         schedule: [],
-  //         exceptions: [],
-  //       })
-  //     )
-  //   }
-  // }, [data])
-
-  // close calendar on outside click
   useEffect(() => {
     const handler = (e: any) => {
       if (

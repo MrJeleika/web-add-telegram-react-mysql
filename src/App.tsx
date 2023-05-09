@@ -18,6 +18,7 @@ import {
 } from 'redux/slice/appSlice'
 import { useAppSelector } from 'redux/app/hooks'
 import { formatDate } from 'utils'
+import { Box } from '@mui/material'
 
 function App() {
   const tg = useTelegram()
@@ -53,10 +54,10 @@ function App() {
   useSetFetchedData(links, setLinks, linksIsFetching)
 
   return (
-    <div className="App">
+    <Box className="App">
       <Navbar />
       <AppRoutes />
-    </div>
+    </Box>
   )
 }
 
