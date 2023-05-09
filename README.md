@@ -1,4 +1,4 @@
-<h1 align="center">Web app schedule</h1>
+<h1 align="center">Web app lessons schedule</h1>
 <p align="center">
   <img src="./readme_assets/Screenshot_322.png" width="25%">
   <img src="./readme_assets/Screenshot_323.png" width="25%">
@@ -13,7 +13,9 @@
 <h2 align="center"><a  href="https://t.me/pi123schedule_bot">Live Version</a></h2>
 
 # Description
-Improved version of 
+Lessons schedule bot created with Telegram web apps. Schedules are often sent as a photo, that's very uncomfortable and takes time to find your lessons for today. <br>
+Using this app you can easily browse, add, change lessons for all days.
+
 
 # Project setup
 
